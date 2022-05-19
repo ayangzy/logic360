@@ -3,41 +3,46 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    {{-- @if (isset(Auth::user()->member))
-                        <img src="{{ asset('/images/users/' . Auth::user()->member->img_url) }}" alt="..." class="avatar-img rounded-circle">
-                    @else
-                        <img src="{{ asset('assets/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
-                    @endif --}}
+                    <div class="avatar-sm float-left mr-2">
+                        <img src="{{ asset('../assets/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
+                    </div>
                 </div>
                 <div class="info">
+                    @if(Auth::check())
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                        {{-- <span>
-                            @if(Auth::check())
-                            {{ Auth::user()->member ? Auth::user()->member->last_name. ' '.  Auth::user()->member->first_name:'Admin'}}
-                            <span class="user-level">{{ Auth::user()->member->roles ? Auth::user()->member->roles->first()->name : 'Member'}}</span> 
+                        <span>
+                            {{ Auth::user()->first_name.' '.  Auth::user()->last_name}}
+                           
+                            <span class="user-level">{{ str_replace("_", " ", Auth::user()->role) }}</span>
                             <span class="caret"></span>
                         </span>
-                            @endif --}}
-                         
                     </a>
+                    @endif
+                   
                     <div class="clearfix"></div>
 
                     <div class="collapse in" id="collapseExample">
-                        <ul class="nav">                           
+                        <ul class="nav">
                             <li>
-                                <a href="#changePassword" class="raise-modal" data-target="#addRowModal"
-                                data-url=""
-                                data-targeturl=""
-                                data-targetdiv="load-partial">
-                                    <span class="link-collapse">Change Password</span>
+                                <a href="#profile">
+                                    <span class="link-collapse">My Profile</span>
                                 </a>
                             </li>
-
+                            <li>
+                                <a href="#edit">
+                                    <span class="link-collapse">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#settings">
+                                    <span class="link-collapse">Settings</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <ul class="nav nav-success">
+            <ul class="nav nav-primary">
                 <li class="nav-item {!! Request::is('/') ? 'active' : '' !!}">
                     <a href="{{ route('home') }}" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
@@ -45,6 +50,7 @@
 
                     </a>
                 </li>
+                
                 {{-- <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>

@@ -1,9 +1,8 @@
 <div class="main-header">
     <!-- Logo Header -->
-    <div class="logo-header" data-background-color="green2">
-
+    <div class="logo-header" data-background-color="blue">
         <a href="{{route('home')}}" class="logo">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="navbar brand" class="navbar-brand">
+            <img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
             data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +20,7 @@
     <!-- End Logo Header -->
 
     <!-- Navbar Header -->
-    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="green2">
+    <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
 
         <div class="container-fluid">
           
@@ -42,23 +41,17 @@
                                         <img src="{{ asset('assets/img/profile.jpg') }}" alt="image profile" class="avatar-img rounded">
                                     </div>
                                     <div class="u-text">
-                                        {{-- @if(Auth::check())
-                                        <h4>{{ Auth::user()->member ? Auth::user()->member->last_name. ' '.  Auth::user()->member->first_name:'Admin'}}</h4>
-                                        <p class="text-muted">{{ Auth::user() ? Auth::user()->email: Auth::user()->member->phone_number }}</p>
+                                        @if(Auth::check())
+
+                                        <h4>{{ Auth::user()->first_name.' '.  Auth::user()->last_name}}</h4>
+                                        <p class="text-muted">{{ Auth::user() ? Auth::user()->email: Auth::user()->phone_number }}</p>
                                         <a href="route('logout')" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                             class="btn btn-xs btn-danger btn-sm">Logout</a>
-                                        @endif --}}
+                                        @endif
                                        
                                     </div>
                                 </div>
                             </li>
-                            {{-- <li>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="route('logout')" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-                            </li> --}}
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
