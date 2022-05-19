@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -26,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -38,7 +40,16 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function username(){
+    public function username()
+    {
         return 'phone_number';
+    }
+
+    protected function authenticated(Request $request, User $user)
+    {
+        if ($user->role == 'admin' || $user->role == 'super_admin') {
+            return view('home');
+        }
+        return redirect()->back()->with('message', 'Unauthorized');
     }
 }
