@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\MarketController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function(){
     Route::get('', [HomeController::class, 'index'])->name('home');
-
+    Route::get('/getMarkets/{id}', [MarketController::class, 'getMarket'])->name('getMarket');
     Route::prefix('categories')->name('category.')->group(function(){
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/loadpartial', [CategoryController::class, 'loadpartial'])->name('loadpartial');
@@ -54,5 +55,16 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/{id}', [MarketController::class, 'update'])->name('update');
         Route::delete('/{id}', [MarketController::class, 'destroy'])->name('destroy');
     });
+
+    Route::prefix('products')->name('product.')->group(function(){
+        Route::get('/', [ProductController::class, 'index'])->name('index');
+        Route::get('/loadpartial', [ProductController::class, 'loadPartial'])->name('load_partial');
+        Route::post('/', [ProductController::class, 'store'])->name('store');
+        Route::get('/upsert/{id}', [ProductController::class, 'upsert'])->name('upsert');
+        Route::post('/{id}', [ProductController::class, 'update'])->name('update');
+        Route::delete('/{id}', [ProductController::class, 'destroy'])->name('destroy');
+    });
+
+   
 });
 

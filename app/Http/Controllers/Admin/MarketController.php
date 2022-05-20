@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\MarketService;
 use App\Http\Requests\CreateMarketRequest;
+use App\Models\Market;
 
 class MarketController extends Controller
 {
@@ -42,23 +43,27 @@ class MarketController extends Controller
         $this->marketService->store($request->validated());
 
         return $this->successResponse('Market added successfully');
-       
     }
 
-   
+
     public function update(Request $request, $id)
     {
         $this->marketService->update($request, $id);
 
         return $this->successResponse('Market updated successfully');
-        
     }
 
-   
+
     public function destroy($id)
     {
         $this->marketService->delete($id);
 
         return $this->successResponse('Market deleted successfully');
+    }
+
+    public function getMarket($id)
+    {
+        $market["data"] = Market::where('location_id', $id)->select('id', 'name')->get();
+        return response()->json($market);
     }
 }
