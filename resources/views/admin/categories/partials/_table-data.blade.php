@@ -27,7 +27,7 @@
             <td class="text-center">
                 <div class="form-button-action">                  
                     <button type="button" data-toggle="tooltip" title="Edit" class="btn btn-link btn-primary btn-lg raise-modal" data-original-title="Edit"
-                    data-url="{{ route('category.upsert', ['id' => $category->id ]) }}" data-targeturl="" data-targetdiv="load-partial">
+                    data-url="{{ route('category.upsert', ['id' => $category->id ]) }}" data-targeturl="{{ route('category.loadpartial') }}" data-targetdiv="load-partial">
                         <i class="fa fa-edit"></i>
                     </button>
 
