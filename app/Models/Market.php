@@ -10,4 +10,9 @@ class Market extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }
