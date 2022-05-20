@@ -50,6 +50,20 @@
 
                     </a>
                 </li>
+
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Menu</h4>
+                </li>
+
+                <li class="nav-item {!! Request::is('categories*') ? 'active' : '' !!}">
+                    <a href="{{ route('category.index') }}">
+                        <i class="fas fa-sitemap"></i>
+                        <p>Categories</p>
+                    </a>
+                </li>
                 
                 {{-- <li class="nav-section">
                     <span class="sidebar-mini-icon">
@@ -150,7 +164,7 @@
                     </a>
                 </li> --}}
                
-                <li class="nav-item">
+                <li class="nav-item mt-5">
                     <a href="route('logout')" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     class="btn btn-xs btn-danger btn-sm">
                         <i class="fas fa-sign-out-alt text-white"></i>
