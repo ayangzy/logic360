@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\MarketController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,15 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/upsert/{id}', [LocationController::class, 'upsert'])->name('upsert');
         Route::post('/{id}', [LocationController::class, 'update'])->name('update');
         Route::delete('/{id}', [LocationController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('markets')->name('market.')->group(function(){
+        Route::get('/', [MarketController::class, 'index'])->name('index');
+        Route::get('/loadpartial', [MarketController::class, 'loadPartial'])->name('load_partial');
+        Route::post('/', [MarketController::class, 'store'])->name('store');
+        Route::get('/upsert/{id}', [MarketController::class, 'upsert'])->name('upsert');
+        Route::post('/{id}', [MarketController::class, 'update'])->name('update');
+        Route::delete('/{id}', [MarketController::class, 'destroy'])->name('destroy');
     });
 });
 

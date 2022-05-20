@@ -71,6 +71,13 @@
                         <p>Locations</p>
                     </a>
                 </li>
+
+                <li class="nav-item {!! Request::is('markets*') ? 'active' : '' !!}">
+                    <a href="{{ route('market.index') }}">
+                        <i class="fas fa-dolly"></i>
+                        <p>Markets</p>
+                    </a>
+                </li>
                 
                 {{-- <li class="nav-section">
                     <span class="sidebar-mini-icon">

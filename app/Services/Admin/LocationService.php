@@ -9,7 +9,7 @@ class LocationService
 {
     public function dataDatables()
     {
-        return Location::query()->get();
+        return Location::query()->with(['state:id,name'])->get();
     }
 
     public function upsert($id)

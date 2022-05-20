@@ -27,10 +27,10 @@
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
                                     <h4 class="card-title"></h4>
-                                    <button class="btn btn-primary btn-round btn-sm ml-auto raise-modal" data-url="{{ route('location.upsert', ['id' => 'new' ]) }}" data-targeturl="{{ route('location.load_partial') }}" data-targetdiv="load-partial">
+                                    {{-- <button class="btn btn-primary btn-round btn-sm ml-auto raise-modal" data-url="{{ route('location.upsert', ['id' => 'new' ]) }}" data-targeturl="{{ route('location.load_partial') }}" data-targetdiv="load-partial">
                                         <i class="fa fa-plus"></i>
                                         Add Location
-                                    </button> 
+                                    </button>  --}}
                                 </div>
                             </div>
                             <div class="card-body">   

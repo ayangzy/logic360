@@ -3,6 +3,7 @@
         <tr>
             <th class="text-center">#</th>
             <th>Name</th>
+            <th>State</th>
             <th class="text-center">Head Quarters</th>
             <th class="text-center">Status</th>
             <th class="text-center">Date Created</th>
@@ -14,7 +15,8 @@
         @foreach ($locations as $key => $location)
         <tr>
             <td class="text-center">{{ $key + 1 }}</td>
-            <td>{{$location->name}}</td>
+            <td>{{ $location->name }}</td>
+            <td>{{ $location->state->name }}</td>
             <td >{{$location->head_quarters}}</td>
             <td class="text-center">
                 @if($location->status == 1)
@@ -31,10 +33,10 @@
                         <i class="fa fa-edit"></i>
                     </button>
 
-                    <button type="button" data-toggle="tooltip" title="Delete" class="btn btn-link btn-danger delete" data-original-title="Delete" 
+                    {{-- <button type="button" data-toggle="tooltip" title="Delete" class="btn btn-link btn-danger delete" data-original-title="Delete" 
                     data-item="{{ $location->name }} location" data-url="{{ route('location.destroy', ['id' => $location->id ]) }}" data-targeturl="{{ route('location.load_partial') }}" data-targetdiv="load-partial">
                         <i class="fas fa-minus-circle"></i>
-                    </button>
+                    </button> --}}
 
                 </div>
             </td>
