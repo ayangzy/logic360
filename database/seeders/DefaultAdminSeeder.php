@@ -18,7 +18,7 @@ class DefaultAdminSeeder extends Seeder
     public function run()
     {
         $password = 'logic360ate';
-        User::updateOrCreate([
+        $data = [
             'first_name' => 'Fater',
             'last_name' => 'Atekombo',
             'phone_number' => '08134949093',
@@ -26,6 +26,7 @@ class DefaultAdminSeeder extends Seeder
             'password' => Hash::make($password),
             'email_verified_at' => Carbon::now(),
             'role' => 'super_admin',
-        ]);
+        ];
+        User::updateOrCreate(['email'=> $data['email']], $data);
     }
 }

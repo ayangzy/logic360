@@ -64,6 +64,13 @@
                         <p>Categories</p>
                     </a>
                 </li>
+
+                <li class="nav-item {!! Request::is('locations*') ? 'active' : '' !!}">
+                    <a href="{{ route('location.index') }}">
+                        <i class="fas fa-globe"></i>
+                        <p>Locations</p>
+                    </a>
+                </li>
                 
                 {{-- <li class="nav-section">
                     <span class="sidebar-mini-icon">

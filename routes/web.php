@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,15 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/upsert/{id}', [CategoryController::class, 'upsert'])->name('upsert');
         Route::post('/{id}', [CategoryController::class, 'update'])->name('update');
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('locations')->name('location.')->group(function(){
+        Route::get('/', [LocationController::class, 'index'])->name('index');
+        Route::get('/loadpartial', [LocationController::class, 'loadPartial'])->name('load_partial');
+        Route::post('/', [LocationController::class, 'store'])->name('store');
+        Route::get('/upsert/{id}', [LocationController::class, 'upsert'])->name('upsert');
+        Route::post('/{id}', [LocationController::class, 'update'])->name('update');
+        Route::delete('/{id}', [LocationController::class, 'destroy'])->name('destroy');
     });
 });
 
