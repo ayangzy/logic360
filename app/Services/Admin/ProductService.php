@@ -3,7 +3,10 @@
 namespace App\Services\Admin;
 
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProductService
 {
@@ -23,12 +26,17 @@ class ProductService
 
     public function store(array $data)
     {
+       
+        if(!is_null($data['image'])){
+           $fileName = $this->uploadFile($data);
+        }
         return Product::create([
             'market_id' => $data['market_id'],
+            'quantity' => $data['quantity'],
             'category_id' => $data['category_id'],
             'name' => $data['name'],
             'price' => $data['price'],
-            'image_url' => 'avatar.jpg',
+            'image_url' => $fileName,
             'description' => $data['description'],
         ]);
     }
@@ -36,7 +44,11 @@ class ProductService
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        return $product->update($request->all());
+        if(!is_null($request->image)){
+            $fileName = $this->uploadFile($request->image);
+            $request['image_url'] = $fileName;
+         }
+        return $product->update($request->except('location', 'image'));
     }
 
 
@@ -45,4 +57,14 @@ class ProductService
         $product = Product::findOrFail($id);
         return $product->delete();
     }
+
+
+    private function uploadFile($image)
+    {
+        $fileName = time() + 1 . '.' . $image->extension();
+        $image->storeAs('products', $fileName, 'public');
+        return $fileName;
+    }
+
+   
 }

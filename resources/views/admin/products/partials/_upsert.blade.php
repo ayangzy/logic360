@@ -2,7 +2,7 @@
   <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form action="{{ $product->id == null ? route('product.store') : route('product.update', ['id' => $product->id ]) }}" id="myForm" method="post">
+            <form action="{{ $product->id == null ? route('product.store') : route('product.update', ['id' => $product->id ]) }}" id="myForm" method="post" enctype="multipart/form-data">
                 @csrf
             <div class="modal-header no-bd bg-primary">
                 <h5 class="modal-title">
@@ -16,7 +16,7 @@
             <div class="modal-body">              
                     <div class="row">      
                        
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="category">Categories<span class="text-danger">*</span></label>
                                 <select class="form-control input-solid" id="category" name="category_id" required>
@@ -29,6 +29,13 @@
                                         @endforeach
                                     @endif
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="quantity">Quantity<span class="text-danger"></span></label>
+                                <input type="text" class="form-control input-solid" name="quantity" id="quantity" value="{{ $product->quantity }}" placeholder="Enter Product Quantity">                               
                             </div>
                         </div>
 
@@ -76,7 +83,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="image">Product snapshop<span class="text-danger">*</span></label>
-                               <input type="file" name="image" id="image" class="form-control" required>
+                               <input type="file" name="image" id="image" class="form-control dropify" required>
                             </div>
                            
                         </div>
