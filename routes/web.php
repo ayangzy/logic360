@@ -20,14 +20,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Auth::routes();
 
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('', [HomeController::class, 'index'])->name('home');
+    Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
     Route::get('/getMarkets/{id}', [MarketController::class, 'getMarket'])->name('getMarket');
     Route::prefix('categories')->name('category.')->group(function(){
         Route::get('/', [CategoryController::class, 'index'])->name('index');

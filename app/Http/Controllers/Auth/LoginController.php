@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -48,8 +49,8 @@ class LoginController extends Controller
     protected function authenticated(Request $request, User $user)
     {
         if ($user->role == 'admin' || $user->role == 'super_admin') {
-            return redirect('/');
+            return redirect('/admin/dashboard');
         }
-        return redirect()->back()->with('message', 'Unauthorized');
+        return $this->errorResponse('not auntiid');
     }
 }
