@@ -25,12 +25,12 @@
 
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="roles">Location<span class="text-danger">*</span> </label>
-                                <select class="form-control input-solid" data-placeholder="Select market location.." data-allow-clear="1" required name="location_id">
+                                <label for="location">Location<span class="text-danger">*</span> </label><br>
+                                <select class="form-control input-solid mySelect2" name="location_id" id="location" required>
+                                    <option value="" selected disabled>Select Location--</option>
                                     @if ($locations->count() > 0)
                                         @foreach ($locations as $key => $location)
-                                            <option value="{{ $location->id }}"
-                                                {{ $location->name ? 'selected' : '' }}>
+                                            <option value="{{ $location->id }}" {{ $market->location_id == $location->id ? "selected": ''}}>
                                                 {{ $location->name }}
                                             </option>
                                         @endforeach
@@ -54,16 +54,17 @@
         $("#myForm").validate();
     });
 
-    $(function() {
-          $('select').each(function() {
-              $(this).select2({
-                  theme: 'bootstrap4',
-                  width: $(this).data('width') ? $(this).data('width') : $(this).hasClass(
-                      'w-100') ? '100%' : 'style',
-                  placeholder: $(this).data('placeholder'),
-                  allowClear: Boolean($(this).data('allow-clear')),
-                  closeOnSelect: !$(this).attr('multiple'),
-              });
-          });
-      });
+   
+    $('.mySelect2').select2({
+        theme: 'bootstrap4',
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass(
+        'w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        allowClear: Boolean($(this).data('allow-clear')),
+        closeOnSelect: !$(this).attr('multiple'),
+        dropdownParent: $('#addRowModal'),
+    }).change(function(e) {
+            $(this).valid();
+        });
+
 </script>

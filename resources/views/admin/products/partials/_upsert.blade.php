@@ -19,7 +19,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="category">Categories<span class="text-danger">*</span></label>
-                                <select class="form-control input-solid" id="category" name="category_id" required>
+                                <select class="form-control input-solid mySelect2" name="category_id" id="category" required>
                                     <option value="" selected disabled>Select Category--</option>
                                     @if ($categories->count() > 0)
                                         @foreach ($categories as $key => $category)
@@ -42,7 +42,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="location">Locations<span class="text-danger">*</span> </label>
-                                <select class="form-control input-solid " id="location" name="location" required>
+                                <select class="form-control input-solid mySelect2" id="location" name="location" required>
                                     <option value="" selected disabled>Select Location--</option>
                                     @if ($locations->count() > 0)
                                         @foreach ($locations as $key => $location)
@@ -58,7 +58,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="market">Market<span class="text-danger">*</span> </label>
-                                <select class="form-control input-solid" id="market" name="market_id" required>
+                                <select class="form-control input-solid mySelect2" id="market" name="market_id" required>
                                     <option value="" selected disabled>Select Market--</option>
                                     
             
@@ -137,4 +137,16 @@
                 });
         });
     });
+
+    $('.mySelect2').select2({
+        theme: 'bootstrap4',
+        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass(
+        'w-100') ? '100%' : 'style',
+        placeholder: $(this).data('placeholder'),
+        allowClear: Boolean($(this).data('allow-clear')),
+        closeOnSelect: !$(this).attr('multiple'),
+        dropdownParent: $('#addRowModal'),
+    }).change(function(e) {
+            $(this).valid();
+        });
 </script>
