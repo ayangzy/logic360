@@ -34,8 +34,8 @@ class ProductController extends Controller
     public function upsert($id)
     {
         $product = $this->productService->upsert($id);
-        $locations = Location::query()->get();
-        $categories = Category::query()->get();
+        $locations = Location::query()->select('id', 'name')->get();
+        $categories = Category::query()->select('id', 'name')->get();
         return view('admin.products.partials._upsert', compact('product', 'locations', 'categories'));
     }
 

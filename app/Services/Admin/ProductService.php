@@ -26,9 +26,9 @@ class ProductService
 
     public function store(array $data)
     {
-       
-        if(!is_null($data['image'])){
-           $fileName = $this->uploadFile($data);
+
+        if (!is_null($data['image'])) {
+            $fileName = $this->uploadFile($data);
         }
         return Product::create([
             'market_id' => $data['market_id'],
@@ -44,10 +44,10 @@ class ProductService
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if(!is_null($request->image)){
-            $fileName = $this->uploadFile($request->image);
+        if (!is_null($request['image'])) {
+            $fileName = $this->uploadFile($request);
             $request['image_url'] = $fileName;
-         }
+        }
         return $product->update($request->except('location', 'image'));
     }
 
@@ -61,10 +61,8 @@ class ProductService
 
     private function uploadFile($image)
     {
-        $fileName = time() + 1 . '.' . $image->extension();
-        $image->storeAs('products', $fileName, 'public');
+        $fileName = time() + 1 . '.' . $image['image']->extension();
+        $image['image']->storeAs('products', $fileName, 'public');
         return $fileName;
     }
-
-   
 }

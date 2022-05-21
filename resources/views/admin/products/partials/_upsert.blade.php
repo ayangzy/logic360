@@ -83,9 +83,10 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="image">Product snapshop<span class="text-danger">*</span></label>
-                               <input type="file" name="image" id="image" class="form-control dropify" required>
+                               <input type="file" name="image" id="image" class="dropify" @if($product->image_url != null) data-default-file="{{ asset('storage/products/'.$product->image_url) }}" @endif>
+                               
                             </div>
-                           
+                            
                         </div>
 
                         <div class="col-md-12">
@@ -114,7 +115,7 @@
     $(document).ready(function () {
         $("#myForm").validate();
     });
-
+    $('.dropify').dropify();
    
     $(document).ready(function() {
         $("#location").change(function() {

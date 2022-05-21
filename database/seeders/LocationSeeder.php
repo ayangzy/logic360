@@ -34,7 +34,7 @@ class LocationSeeder extends Seeder
 
             [
                 "state_id" => 7,
-                "name" => "Buruku;",
+                "name" => "Buruku",
                 "head_quarters" => "Buruku"
             ],
 
