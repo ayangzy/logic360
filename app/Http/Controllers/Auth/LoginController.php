@@ -51,6 +51,6 @@ class LoginController extends Controller
         if ($user->role == 'admin' || $user->role == 'super_admin') {
             return redirect('/admin/dashboard');
         }
-        return $this->errorResponse('not auntiid');
+        return redirect()->back()->with('message', 'Unauthorized');
     }
 }
