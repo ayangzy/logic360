@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\MarketController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Front\FrontendController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+
+Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('market-products/{id}', [FrontendController::class, 'marketPrducts'])->name('market_product');
 
 
 Route::middleware(['auth'])->group(function(){

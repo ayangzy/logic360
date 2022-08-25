@@ -35,7 +35,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="quantity">Quantity<span class="text-danger"></span></label>
-                                <input type="text" class="form-control input-solid" name="quantity" id="quantity" value="{{ $product->quantity }}" placeholder="Enter Product Quantity">                               
+                                <input type="text" class="form-control input-solid" name="quantity" id="quantity" value="{{ $product->quantity }}" placeholder="Enter Product Quantity" required>                               
                             </div>
                         </div>
 
@@ -83,7 +83,9 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="image">Product snapshop<span class="text-danger">*</span></label>
-                               <input type="file" name="image" id="image" class="dropify" @if($product->image_url != null) data-default-file="{{ asset('storage/products/'.$product->image_url) }}" @endif>
+            
+                                {{-- <input type="file" name="image" id="image" class="dropify" @if($product->image_url != null) data-default-file="{{ asset('storage/products/'.$product->image_url) }}" @endif> --}}
+                               <input type="file" name="image" id="image" class="dropify" data-max-file-size="6M"  @if($product->image_url != null) data-default-file="{{ $product->image_url }}" @endif>
                                
                             </div>
                             
@@ -116,6 +118,8 @@
         $("#myForm").validate();
     });
     $('.dropify').dropify();
+
+    
    
     $(document).ready(function() {
         $("#location").change(function() {

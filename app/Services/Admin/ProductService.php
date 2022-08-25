@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ProductService
 {
@@ -61,8 +62,18 @@ class ProductService
 
     private function uploadFile($image)
     {
-        $fileName = time() + 1 . '.' . $image['image']->extension();
-        $image['image']->storeAs('products', $fileName, 'public');
-        return $fileName;
+        $resizedImage = Cloudinary::upload(($image['image'])->getRealPath(), [
+            'folder' => 'uploads',
+            'transformation' => [
+                'width' => 1000,
+                'height' => 1000
+            ]
+        ])->getSecurePath();
+
+        return $resizedImage;
+
+        // $fileName = time() + 1 . '.' . $image['image']->extension();
+        // $image['image']->storeAs('products', $fileName, 'public');
+        // return $fileName;
     }
 }

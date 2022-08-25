@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-        <title>Techmarket HTML</title>
+        <title>Market price reviewer</title>
         <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/bootstrap.min.css') }}" media="all" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/font-awesome.min.css') }}" media="all"/>
+        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/font-awesome.min.css') }}" media="all"/> --}}
         <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/bootstrap-grid.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/bootstrap-reboot.min.css') }}" media="all" />
         <link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/font-techmarket.css') }}" media="all" />
@@ -20,9 +20,16 @@
         <link rel="shortcut icon" href="assets/images/fav-icon.png">
     </head>
 <body class="woocommerce-active full-width">
+    <!-- ====================== Top Header ================================= -->
+    @include('front.layouts.inc.top-header')
+
+    <!-- =================================== Header ================== -->
+    @include('front.layouts.inc.header')
 
     <div id="page" class="hfeed site">
         @yield('content')
+
+        @include('front.layouts.inc.footer')
     </div>
 
     <script type="text/javascript" src="{{ asset('front/assets/js/jquery.min.js') }}"></script>

@@ -15,4 +15,9 @@ class Location extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function markets()
+    {
+        return $this->hasMany(Market::class);
+    }
 }

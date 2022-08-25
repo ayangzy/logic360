@@ -27,7 +27,7 @@ class CreateProductRequest extends FormRequest
             'name' => 'required|string|max:255',
             'price' =>  'required|numeric',
             'description' => 'nullable|string|max:255',
-            'image' => 'image|mimes:png,jpg',
+            'image' => 'image',
             'category_id' => 'required|exists:categories,id',
             'market_id' => 'required|exists:markets,id',
             'quantity' => 'nullable|string|max:255'
