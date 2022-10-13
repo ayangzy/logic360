@@ -23535,7 +23535,8 @@ dl.variation {
 .products {
   margin-left: 0;
   margin-bottom: 0;
-  clear: both; }
+  clear: both; 
+}
   .products::after {
     display: block;
     content: "";
