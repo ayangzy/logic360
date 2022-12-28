@@ -27,6 +27,12 @@ cp .env.example .env
 
 ```
 
+### Generating app key
+Run the following commands on the project directory to generate the app key
+```
+php artisan key:generate
+```
+
 Once you run the above command please configure your database in the .env file. You can check the default .env.example if you want to manually create the .env file
 
 The application uses cloudinary for products upload, kindly ensure you add your cloudinary key to the application .env file
@@ -50,7 +56,7 @@ php artisan db:seed
 Run ```php artisan serve```  on the project directory to start your application
 
 
-For testing purpose, kindly navigate to ```http://127.0.0.1:8000/login``` <br> with the followwing credentials below <br>
+For testing purpose, kindly navigate to ```http://127.0.0.1:8000/login``` <br> with the following credentials below <br>
 ```
 Phone Number: 08100000000 
 password: admin@123
