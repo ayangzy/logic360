@@ -17,16 +17,16 @@ class DefaultAdminSeeder extends Seeder
      */
     public function run()
     {
-        $password = 'logic360ate';
+        $password = 'admin@123';
         $data = [
             'first_name' => 'Fater',
             'last_name' => 'Atekombo',
-            'phone_number' => '08134949093',
+            'phone_number' => '08100000000',
             'email' => 'logicfatee360@gmail.com',
             'password' => Hash::make($password),
             'email_verified_at' => Carbon::now(),
             'role' => 'super_admin',
         ];
-        User::updateOrCreate(['email'=> $data['email']], $data);
+        User::updateOrCreate(['email' => $data['email']], $data);
     }
 }
