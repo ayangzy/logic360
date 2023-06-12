@@ -9,10 +9,10 @@ pipeline {
 
          stage('Test') { 
             steps {
+                sh 'php artisan migrate --env=testing'
                 sh 'php artisan test'
             }
         }
-
        
         stage('Deploy') { 
 
