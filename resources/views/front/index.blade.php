@@ -19,7 +19,7 @@
                             </button>
                         </div>
 
-                        <h1 class="woocommerce-products-header__title page-title">Available Products</h1>
+                        <h1 class="woocommerce-products-header__title page-title">All Available Products</h1>
                     </div>
 
                     <div id="grid-extended" role="tabpanel">
