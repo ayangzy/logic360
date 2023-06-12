@@ -23,14 +23,18 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/run-test', function () {
+    return "hello world";
+});
+
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('market-products/{id}', [FrontendController::class, 'marketPrducts'])->name('market_product');
 
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('home');
     Route::get('/getMarkets/{id}', [MarketController::class, 'getMarket'])->name('getMarket');
-    Route::prefix('categories')->name('category.')->group(function(){
+    Route::prefix('categories')->name('category.')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('index');
         Route::get('/loadpartial', [CategoryController::class, 'loadpartial'])->name('loadpartial');
         Route::post('/', [CategoryController::class, 'store'])->name('store');
@@ -39,7 +43,7 @@ Route::middleware(['auth'])->group(function(){
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('destroy');
     });
 
-    Route::prefix('locations')->name('location.')->group(function(){
+    Route::prefix('locations')->name('location.')->group(function () {
         Route::get('/', [LocationController::class, 'index'])->name('index');
         Route::get('/loadpartial', [LocationController::class, 'loadPartial'])->name('load_partial');
         Route::post('/', [LocationController::class, 'store'])->name('store');
@@ -48,7 +52,7 @@ Route::middleware(['auth'])->group(function(){
         Route::delete('/{id}', [LocationController::class, 'destroy'])->name('destroy');
     });
 
-    Route::prefix('markets')->name('market.')->group(function(){
+    Route::prefix('markets')->name('market.')->group(function () {
         Route::get('/', [MarketController::class, 'index'])->name('index');
         Route::get('/loadpartial', [MarketController::class, 'loadPartial'])->name('load_partial');
         Route::post('/', [MarketController::class, 'store'])->name('store');
@@ -57,7 +61,7 @@ Route::middleware(['auth'])->group(function(){
         Route::delete('/{id}', [MarketController::class, 'destroy'])->name('destroy');
     });
 
-    Route::prefix('products')->name('product.')->group(function(){
+    Route::prefix('products')->name('product.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
         Route::get('/loadpartial', [ProductController::class, 'loadPartial'])->name('load_partial');
         Route::post('/', [ProductController::class, 'store'])->name('store');
@@ -65,7 +69,4 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/{id}', [ProductController::class, 'update'])->name('update');
         Route::delete('/{id}', [ProductController::class, 'destroy'])->name('destroy');
     });
-
-   
 });
-
