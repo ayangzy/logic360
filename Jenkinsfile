@@ -11,7 +11,7 @@ pipeline {
         stage('Deploy') { 
 
             steps{
-                sh 'ssh -o StrictHostKeyChecking=no logic@3.238.251.148 "bash var/www/logic/scripts/deploy.sh"'
+                sh 'ssh -o StrictHostKeyChecking=no logic@3.238.251.148 "bash /home/logic/var/www/logic/scripts/deploy.sh"'
             }
            
             //  steps {
