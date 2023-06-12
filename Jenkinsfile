@@ -9,6 +9,7 @@ pipeline {
 
          stage('Test') { 
             steps {
+                sh 'touch database/database.sqlite'
                 sh 'php artisan migrate --env=testing'
                 sh 'php artisan key:generate --env=testing'
                 sh 'php artisan test'
