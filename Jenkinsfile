@@ -7,6 +7,12 @@ pipeline {
             }
         }
 
+         stage('Test') { 
+            steps {
+                sh 'php artisan test'
+            }
+        }
+
        
         stage('Deploy') { 
 
